@@ -11,13 +11,13 @@
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://www.dropbox.com/s/880w05073fkvv42/TestSigned.ipa?dl=1</string>
+					<string>https://www.dropbox.com/s/wjc32n0uvb9f3k6/Torngay.ipa?dl=0</string>
 				</dict>
 			</array>
 			<key>metadata</key>
 			<dict>
 				<key>bundle-identifier</key>
-				<string>clash.of.fucks</string>
+				<string>ipg1101.torngay</string>
 				<key>bundle-version</key>
 				<string>4.0</string>
 				<key>kind</key>
@@ -25,7 +25,7 @@
 				<key>subtitle</key>
 				<string>41A472</string>
 				<key>title</key>
-				<string>Crash of Clans</string>
+				<string>Torngay</string>
 			</dict>
 		</dict>
 	</array>
