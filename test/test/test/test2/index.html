@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Visual | American Street</title>
+	<style>
+		@keyframes lol {
+			0% {
+				filter: hue-rotate(1deg);
+			}
+			100% {
+				filter: hue-rotate(360deg);
+			}
+		}
+		#hidden {
+			display: none;
+			width: 0;
+			height: 0;
+		}
+		#not_hidden {
+			top: 0;
+			height: 100vh;
+			width: 66vh;
+			background: black;
+			animation: lol 1s linear infinite;
+		}
+		* {
+			text-align: center;
+			padding: 0;
+			margin: 0;
+			background: #555;
+		}
+	</style>
+	<script>
+		let xyz = 0;
+		function rgba(modifier = 0) {
+			let r = (xyz++) % 255;
+			let g = (xyz+85) % 255;
+			let b = (xyz+170) % 255;
+			r+=modifier;
+			g+=modifier;
+			b+=modifier;
+			if(modifier != 0) {
+				let tmp = b;
+				b = g;
+				g = r;
+				r = tmp;
+			}
+			let a = 1;
+			return `rgba(${r}, ${g}, ${b}, ${a})`
+		};
+		window.onload = function onload(evt) {
+			let h = document.querySelector("#hidden"),
+				hctx = h.getContext('2d'),
+				c = document.querySelector("#not_hidden"),
+				cctx = c.getContext('2d');
+			let i = new Image();
+			i.src = 'visual.png?' + new Date().getTime();
+			i.onload = function onload(evt) {
+				h.width = c.width = i.width;
+				h.height = c.height = i.height;
+				hctx.drawImage(i, 0, 0, h.width, h.height);
+				for(let x = 0; x < c.width/3-1; x++) {
+					setTimeout((x)=>{
+						for(let y = 0; y < c.height; y++) {
+							let imgData = hctx.getImageData(x, y, 1, 1);
+							window.imgDta = imgData.data;
+							if(imgData.data[3] == 0) {
+								cctx.fillStyle = rgba();
+								cctx.fillRect(x, y, 1, 1);
+							}
+						};
+					}, 0, x);
+				};
+				for(x = c.width-1; x >= c.width/2-1; x--) {
+					setTimeout((x)=>{
+						for(let y = 0; y < c.height; y++) {
+							let imgData = hctx.getImageData(x, y, 1, 1);
+							window.imgDta = imgData.data;
+							if(imgData.data[3] == 0) {
+								cctx.fillStyle = rgba();
+								cctx.fillRect(x, y, 1, 1);
+							}
+						};
+					}, 0, x);
+				};
+				for(x = c.width/3-1; x < c.width/2-1; x++) {
+					setTimeout((x)=>{
+						for(let y = 0; y < c.height; y++) {
+							let imgData = hctx.getImageData(x, y, 1, 1);
+							window.imgDta = imgData.data;
+							if(imgData.data[3] == 0) {
+								cctx.fillStyle = rgba();
+								cctx.fillRect(x, y, 1, 1);
+							}
+						};
+					}, 0, x);
+				};
+				setInterval(()=>{
+					for(let x = 0; x < c.width/3-1; x++) {
+						setTimeout((x)=>{
+							for(let y = 0; y < c.height; y++) {
+								let imgData = hctx.getImageData(x, y, 1, 1);
+								window.imgDta = imgData.data;
+								if(imgData.data[3] != 0) {
+									cctx.fillStyle = rgba(-127);
+									cctx.fillRect(x, y, 1, 1);
+								}
+							};
+						}, 0, x);
+					};
+					for(x = c.width-1; x >= c.width/2-1; x--) {
+						setTimeout((x)=>{
+							for(let y = 0; y < c.height; y++) {
+								let imgData = hctx.getImageData(x, y, 1, 1);
+								window.imgDta = imgData.data;
+								if(imgData.data[3] != 0) {
+									cctx.fillStyle = rgba(-127);
+									cctx.fillRect(x, y, 1, 1);
+								}
+							};
+						}, 0, x);
+					};
+					for(x = c.width/3-1; x < c.width/2-1; x++) {
+						setTimeout((x)=>{
+							for(let y = 0; y < c.height; y++) {
+								let imgData = hctx.getImageData(x, y, 1, 1);
+								window.imgDta = imgData.data;
+								if(imgData.data[3] != 0) {
+									cctx.fillStyle = rgba(-127);
+									cctx.fillRect(x, y, 1, 1);
+								}
+							};
+						}, 0, x);
+					};
+				});
+			};
+		};
+	</script>
+</head>
+<body>
+	<canvas id='hidden'></canvas>
+	<canvas id='not_hidden'></canvas>
+</body>
+</html>
